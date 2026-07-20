@@ -1,0 +1,18 @@
+#!/bin/sh
+# This plugin delegates terminal retention and floating geometry to Herdr core.
+set -eu
+
+: "${HERDR_PLUGIN_ID:?Herdr did not provide HERDR_PLUGIN_ID}"
+: "${HERDR_PLUGIN_ACTION_ID:?Herdr did not provide HERDR_PLUGIN_ACTION_ID}"
+: "${HERDR_WORKSPACE_ID:?Herdr did not provide HERDR_WORKSPACE_ID}"
+
+if [ -n "${HERDR_BIN_PATH:-}" ] && [ -x "$HERDR_BIN_PATH" ]; then
+    herdr_cli=$HERDR_BIN_PATH
+else
+    herdr_cli=$(command -v herdr) || {
+        echo "herdr-floax: cannot find a usable Herdr CLI" >&2
+        exit 127
+    }
+fi
+
+exec "$herdr_cli" plugin scratch toggle --width 80% --height 80%

@@ -1,0 +1,14 @@
+id = "RooseveltAdvisors.herdr-floax"
+name = "herdr-floax"
+version = "0.1.0"
+min_herdr_version = "0.7.4"
+description = "tmux-floax-inspired retained floating scratch shell for Herdr; credits omerxx/tmux-floax"
+platforms = ["linux", "macos"]
+
+[[actions]]
+id = "toggle"
+title = "Toggle Floax scratch"
+description = "Toggle the retained floating scratch shell for the active workspace"
+contexts = ["workspace"]
+retained_scratch = true
+command = ["./scripts/toggle-floax"]
